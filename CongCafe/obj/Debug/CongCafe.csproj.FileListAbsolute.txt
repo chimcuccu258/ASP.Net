@@ -77,3 +77,10 @@ D:\ASP.Net\CongCafe\obj\Debug\CongCafe.csproj.CoreCompileInputs.cache
 D:\ASP.Net\CongCafe\obj\Debug\CongCafe.csproj.CopyComplete
 D:\ASP.Net\CongCafe\obj\Debug\CongCafe.dll
 D:\ASP.Net\CongCafe\obj\Debug\CongCafe.pdb
+D:\ASP.Net\CongCafe\bin\EntityFramework.dll
+D:\ASP.Net\CongCafe\bin\EntityFramework.SqlServer.dll
+D:\ASP.Net\CongCafe\bin\EntityFramework.xml
+D:\ASP.Net\CongCafe\bin\EntityFramework.SqlServer.xml
+D:\ASP.Net\CongCafe\bin\MyClass.dll
+D:\ASP.Net\CongCafe\bin\MyClass.pdb
+D:\ASP.Net\CongCafe\bin\MyClass.dll.config

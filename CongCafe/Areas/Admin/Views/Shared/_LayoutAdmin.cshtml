@@ -11,12 +11,14 @@
     <link href="~/Public/dist/css/adminlte.min.css" rel="stylesheet" />
     <!-- Bootstrap tu dinh  nghia-->
     <link href="~/Public/css/LayoutAdmin.css" rel="stylesheet" />
+    <!-- Favicon -->
+    <link rel="icon" href="~/Public/img/favicon.png" type="image/png">
 
     @RenderSection("head", required: false)
 </head>
 
 @*Khu vuc body*@
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini layout-fixed">
     <!-- Site wrapper -->
     <div class="wrapper">
         <!-- Navbar -->
@@ -50,11 +52,11 @@
         </nav>
         <!-- /.navbar -->
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #3c5e2c ">
             <!-- Brand Logo -->
             <a href="@Url.Action("Index","Link")" class="brand-link">
-                <img src="~/Public/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">AdminLTE 3</span>
+                <img src="~/Public/img/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <span class="brand-text font-weight-light">Cộng Cà Phê</span>
             </a>
 
             <!-- Sidebar -->
@@ -72,7 +74,7 @@
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <!-- Menu Sản phẩm: Loại SP, Sản phẩm, Nhà cung cấp -->
+                        <!-- Menu Sản phẩm: Loại SP, Sản phẩm -->
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="fa fa-procedures " aria-hidden="true"></i>
@@ -92,12 +94,6 @@
                                     <a href="@Url.Action("Index","Category")" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Danh mục loại sản phẩm</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Index","Supplier")" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Danh mục nhà cung cấp</p>
                                     </a>
                                 </li>
                             </ul>

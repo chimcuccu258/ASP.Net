@@ -12,7 +12,11 @@ namespace MyClass.DAO
     {
         private MyDBContext db = new MyDBContext();
 
+        public List<Categories> getList()
+        {
 
+            return db.Categories.ToList();
+        }
         public List<Categories> getList(string status = "All")
         {
             List<Categories> list = null;

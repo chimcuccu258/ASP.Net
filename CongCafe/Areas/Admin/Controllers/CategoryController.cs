@@ -41,6 +41,7 @@ namespace CongCafe.Areas.Admin.Controllers
         // GET: Admin/Category/Create
         public ActionResult Create()
         {
+            ViewBag.ListCat = new SelectList(categoryDAO.getList("Index"), "Id", "Name");
             return View();
         }
 
@@ -49,10 +50,11 @@ namespace CongCafe.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Slug,ParentID,Order,MetaDesc,MetaKey,CreateAt,CreateBy,UpdateAt,UpdateBy,Status")] Categories categories)
+        public ActionResult Create(Categories categories)
         {
             if (ModelState.IsValid)
             {
+
                 //db.Categories.Add(categories);
                 //db.SaveChanges();
                 categoryDAO.Insert(categories);

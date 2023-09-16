@@ -7,17 +7,20 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MyClass.Model;
+using MyClass.DAO;
 
 namespace CongCafe.Areas.Admin.Controllers
 {
     public class CategoryController : Controller
     {
-        private MyDBContext db = new MyDBContext();
+        //private MyDBContext db = new MyDBContext();
+        CategoriesDAO categoryDAO = new CategoriesDAO();
 
         // GET: Admin/Category
         public ActionResult Index()
         {
-            return View(db.Categories.ToList());
+            //return View(db.Categories.ToList());
+            return View(categoryDAO.getList("Index"));
         }
 
         // GET: Admin/Category/Details/5
@@ -27,7 +30,7 @@ namespace CongCafe.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Categories categories = db.Categories.Find(id);
+            Categories categories = categoryDAO.getRow(id);
             if (categories == null)
             {
                 return HttpNotFound();
@@ -50,8 +53,9 @@ namespace CongCafe.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Categories.Add(categories);
-                db.SaveChanges();
+                //db.Categories.Add(categories);
+                //db.SaveChanges();
+                categoryDAO.Insert(categories);
                 return RedirectToAction("Index");
             }
 
@@ -65,8 +69,9 @@ namespace CongCafe.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Categories categories = db.Categories.Find(id);
-            if (categories == null)
+            //Categories categories = db.Categories.Find(id);
+            Categories categories = categoryDAO.getRow(id);
+                if (categories == null)
             {
                 return HttpNotFound();
             }
@@ -78,12 +83,13 @@ namespace CongCafe.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Slug,ParentID,Order,MetaDesc,MetaKey,CreateAt,CreateBy,UpdateAt,UpdateBy,Status")] Categories categories)
+        public ActionResult Edit(Categories categories)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(categories).State = EntityState.Modified;
-                db.SaveChanges();
+                //db.Entry(categories).State = EntityState.Modified;
+                //db.SaveChanges();
+                categoryDAO.Update(categories);
                 return RedirectToAction("Index");
             }
             return View(categories);
@@ -96,7 +102,8 @@ namespace CongCafe.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Categories categories = db.Categories.Find(id);
+            //Categories categories = db.Categories.Find(id);
+            Categories categories = categoryDAO.getRow(id);
             if (categories == null)
             {
                 return HttpNotFound();
@@ -109,19 +116,13 @@ namespace CongCafe.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Categories categories = db.Categories.Find(id);
-            db.Categories.Remove(categories);
-            db.SaveChanges();
+            //Categories categories = db.Categories.Find(id);
+            Categories categories = categoryDAO.getRow(id);
+            categoryDAO.Delete(categories);
+            //db.Categories.Remove(categories);
+            //db.SaveChanges();
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }

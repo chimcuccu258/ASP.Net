@@ -14,7 +14,6 @@ namespace MyClass.DAO
 
         public List<Categories> getList()
         {
-
             return db.Categories.ToList();
         }
         public List<Categories> getList(string status = "All")

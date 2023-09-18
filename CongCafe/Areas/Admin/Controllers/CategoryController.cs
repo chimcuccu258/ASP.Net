@@ -42,6 +42,7 @@ namespace CongCafe.Areas.Admin.Controllers
         public ActionResult Create()
         {
             ViewBag.ListCat = new SelectList(categoryDAO.getList("Index"), "Id", "Name");
+            ViewBag.OrderList = new SelectList(categoryDAO.getList("Index"), "Order", "Name");
             return View();
         }
 
@@ -54,13 +55,29 @@ namespace CongCafe.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                //Xu ly cho muc ParentId
+                if (categories.ParentID == null)
+                {
+                    categories.ParentID = 0;
+                }
+
+                //Xu ly cho muc Order
+                if (categories.Order == null)
+                {
+                    categories.Order = 1;
+                }
+                else
+                {
+                    categories.Order = categories.Order + 1;
+                }
 
                 //db.Categories.Add(categories);
                 //db.SaveChanges();
                 categoryDAO.Insert(categories);
                 return RedirectToAction("Index");
             }
-
+            ViewBag.ListCat = new SelectList(categoryDAO.getList("Index"), "Id", "Name");
+            ViewBag.OrderList = new SelectList(categoryDAO.getList("Index"), "Order", "Name");
             return View(categories);
         }
 
